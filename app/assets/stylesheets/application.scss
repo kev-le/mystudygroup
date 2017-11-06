@@ -10,5 +10,13 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require home
+ *= require sessions
+ *= require users
  */
 @import "bootstrap";
+
+/* change the navbar color */
+.navbar-light {
+  background-color: white !important;
+}
