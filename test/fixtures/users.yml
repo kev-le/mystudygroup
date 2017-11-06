@@ -6,6 +6,8 @@ one:
   role: MyString
 
 two:
-  email: MyString
+  first_name: "bobby"
+  last_name: "chan"
+  email: "already@taken.ca"
   password_digest: MyString
-  role: MyString
+  role: "admin"
