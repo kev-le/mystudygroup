@@ -1,6 +1,17 @@
 # MyStudyGroup
 CMPT 276 Project
 
+## Installation Steps
+
+1. create local db "mystudygroup_development"
+2. bundle install
+3. rails db:migrate
+4. rails db:seed
+5. rails s
+
+*admin seed  -  email: a@a.com, password: 123456
+*user seed   - email: b@b.com, password: 123456 
+
 ## Project Abstract
 
 MyStudyGroup provides a platform for students who want to find a study partner or group nearby. The application will provide a user’s own profile and features including: creating groups, finding people with the same course near you, pinning "study spots" for locations to study at, private chatting with group members and document sharing amongst groups.
