@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
 
+  # Admin routes
+  get '/admin', to: 'admin#index'
+
 
 end

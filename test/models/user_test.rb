@@ -15,7 +15,8 @@ class UserTest < ActiveSupport::TestCase
     @user.first_name = "bobby"
     @user.last_name = "chan"
     @user.email = "bobby@sfu.ca"
-    @user.password_digest = "123456"
+    @user.password = "123456"
+    @user.password_confirmation = "123456"
     assert @user.save
   end
 
@@ -24,7 +25,8 @@ class UserTest < ActiveSupport::TestCase
     @user.first_name = "b"
     @user.last_name = "chan"
     @user.email = "bobby@sfu.ca"
-    @user.password_digest = "123456"
+    @user.password = "123456"
+    @user.password_confirmation = "123456"
     assert !@user.save
   end
 
@@ -33,7 +35,8 @@ class UserTest < ActiveSupport::TestCase
     @user2.first_name = "bobby"
     @user2.last_name = "chan"
     @user2.email = "already@taken.ca"
-    @user2.password_digest = "123456"
+    @user2.password = "123456"
+    @user2.password_confirmation = "123456"
     @user2.save
     assert !@user2.save
   end

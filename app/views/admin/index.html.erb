@@ -1,0 +1,36 @@
+<% if is_admin? %>
+
+<div class="admin-panel panel-default">
+  <h1>Listing Users</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% else %>
+  <div class="jumbotron">
+    <h1>You are not an admin</h1>
+    <p>Go away.</p>
+  </div>
+<% end %>
