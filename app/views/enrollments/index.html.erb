@@ -1,0 +1,39 @@
+<div class="admin-panel panel-default">
+
+  <h1>Listing Enrollments</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User Id</th>
+        <th>Course Name</th>
+        <th>Percentage</th>
+        <th>Lettergrade</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @enrollments.each do |enrollment| %>
+        <tr>
+          <td><%= enrollment.user_id %></td>
+          <% if enrollment.course.present? %>
+              <td><%= enrollment.course.name %></td>
+          <% else %>
+              <td><%= enrollment.id %></td>
+          <% end %>
+
+          <td><%= enrollment.percentage %></td>
+          <td><%= enrollment.lettergrade %></td>
+          <td><%= link_to 'Show', enrollment %></td>
+          <td><%= link_to 'Edit', edit_enrollment_path(enrollment) %></td>
+          <td><%= link_to 'Destroy', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Enrollment', new_enrollment_path, class: "btn btn-success" %>
+</div>
