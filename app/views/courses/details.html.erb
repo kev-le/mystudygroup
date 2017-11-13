@@ -1,0 +1,19 @@
+<div class="admin-panel-small panel-default">
+  <p>
+    <strong>Course Id:</strong>
+    <%= @course.id %>
+  </p>
+
+  <p>
+    <strong>Course Name:</strong>
+    <%= @course.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @course.description %>
+  </p>
+
+  <%= link_to 'Edit', edit_course_path(@course) %> |
+  <%= link_to 'Back', courses_path %>
+</div>

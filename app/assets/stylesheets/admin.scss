@@ -5,12 +5,24 @@
   margin-top: 50px !important;
   margin: auto;
   width: 80%;
+  height: 80%;
   max-width: 1000px;
   padding: 10px;
 }
 
+.admin-panel-small {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 3px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  margin-top: 50px !important;
+  margin: auto;
+  width: 300px;
+  max-width: 600px;
+  padding: 10px;
+}
+
 .admin-panel-title {
-    text-align: center !important;
+  text-align: center !important;
 }
 
 .admin-panel-body {

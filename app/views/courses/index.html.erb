@@ -1,0 +1,35 @@
+<div class="admin-panel panel-default">
+
+  <h1>Listing Courses</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Course Id</th>
+        <th>Course Name</th>
+        <th>Description</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @courses.each do |course| %>
+        <tr>
+          <td><%= course.id %></td>
+          <td><%= course.name %></td>
+          <td><%= course.description %></td>
+          <td><%= link_to 'Enrollments', course %></td>
+          <td><%= link_to 'Details', details_course_path(course) %></td>
+          <td><%= link_to 'Edit', edit_course_path(course) %></td>
+          <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' + "\r\n" + 'It will also delete all enrollments associated to this course.' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+
+  <%= link_to 'New Course', new_course_path, class: "btn btn-success" %>
+
+</div>

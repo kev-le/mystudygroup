@@ -26,10 +26,20 @@
           <a class="nav-link" href="/findagroup">Find a group</a>
         </li>
         <% if is_admin? %>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin">Administration</a>
+          <li class="nav-item btn-group">
+            <!-- <a class="nav-link" href="/admin">Administration</a> -->
+            <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Administration
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <a class="dropdown-item" href="/admin/users">Users</a>
+                    <a class="dropdown-item" href="/admin/courses">Courses</a>
+                    <a class="dropdown-item" href="/admin/enrollments">Enrollments</a>
+                </div>
+            </li>
           </li>
         <% end %>
+
       </ul>
       <ul class="navbar-nav">
         <% if is_logged_in? %>
