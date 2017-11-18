@@ -23,5 +23,7 @@ Rails.application.routes.draw do
   # Admin routes
   get '/admin', to: 'admin#index'
 
+  #About page route
+  get 'about', to: 'static_pages#about', :as => 'about'
 
 end
