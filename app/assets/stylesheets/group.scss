@@ -1,0 +1,72 @@
+
+.row {
+  margin: 10px !important;
+}
+
+.add-group-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 15px 20px;
+}
+
+.group-container {
+  width: 100%;
+}
+
+.col-sm-4 {
+  margin-bottom: 20px;
+}
+
+.card {
+  height: 100% !important;
+  margin: 0px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.card-link + .remove {
+  color: red;
+}
+
+.card-text {
+  margin-bottom: 20px !important;
+  height: 50px;
+}
+
+.searchable-container {
+  width: 100%;
+  position: relative;
+}
+
+.searchable-container label.btn-default.active{
+  background-color:#007ba7;
+  color:#FFF;
+}
+
+.searchable-container label.btn-default{
+  width:90%;
+  border:1px solid #efefef;
+  margin:5px;
+  background-color: #ffffff;
+  box-shadow:5px 8px 8px 0 #ccc;
+}
+
+.searchable-container label .content{
+  width:100%;
+  word-break: break-all !important;
+  white-space: normal !important;
+  p {
+    text-align: left;
+  }
+}
+
+.searchable-container .btn-group{
+  width:100%;
+}
+
+.searchable-container button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

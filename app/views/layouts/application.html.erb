@@ -22,9 +22,14 @@
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/findagroup">Find a group</a>
-        </li>
+        <% if is_logged_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="/courses">My Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/groups">My Groups</a>
+          </li>
+        <% end %>
         <% if is_admin? %>
           <li class="nav-item btn-group">
             <!-- <a class="nav-link" href="/admin">Administration</a> -->
