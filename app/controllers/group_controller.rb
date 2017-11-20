@@ -37,7 +37,7 @@ class GroupController < ApplicationController
     end
 
     if (@groups.empty?)
-      @empty = "No available courses."
+      @empty = "No available groups."
     end
   end
 
