@@ -22,14 +22,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
         </li>
-        <% if is_logged_in? %>
-          <li class="nav-item">
-            <a class="nav-link" href="/courses">My Courses</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/groups">My Groups</a>
-          </li>
-        <% end %>
+        <li class="nav-item">
+          <a class="nav-link" href="/findagroup">Find a group</a>
+        </li>
         <% if is_admin? %>
           <li class="nav-item btn-group">
             <!-- <a class="nav-link" href="/admin">Administration</a> -->
@@ -43,7 +38,16 @@
                 </div>
             </li>
           </li>
-        <% end %>
+        <% elsif is_logged_in? %>
+        <li class="nav-item btn-group">
+          <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= session[:first_name] %>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <a><%= link_to 'Your Profile', update_user_path(session[:user_id]), class: "dropdown-item" %></a>
+              </div>
+          </li>
+        </li>
+      <% end %>
 
       </ul>
       <ul class="navbar-nav">
@@ -65,6 +69,12 @@
       </ul>
     </div>
   </nav>
+  <body>
+  <div class="container">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+  </div>
   <body>
     <%= yield %>
   </body>

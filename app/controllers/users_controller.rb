@@ -31,6 +31,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def changeProfile
+      @user_id = params[:id]
+      @user = User.find(@user_id)
+      @user.first_name = params[:first_name]
+      @user.last_name = params[:last_name]
+      @user.email = params[:email]
+      @user.bio = params[:bio]
+      @user.school = params[:school]
+      @user.faculty = params[:faculty]
+
+      if @user.save
+          flash[:success] = "Profile updated!"
+      else
+          flash[:error] = "Error"
+      end
+      redirect_to action: "show", user_id: @user_id
+  end
+
   # DELETE /admin/users/1
   # DELETE /admin/users/1.json
   def destroy

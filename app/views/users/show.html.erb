@@ -19,6 +19,28 @@
     <%= @user.email %>
   </p>
 
-  <%= link_to 'Edit', '/admin/users/' + @user.id.to_s + '/edit' %> |
-  <%= link_to 'Back', '/admin/users' %>
+  <p>
+    <strong>Bio:</strong>
+    <%= @user.bio %>
+  </p>
+
+  <p>
+    <strong>School:</strong>
+    <%= @user.school %>
+  </p>
+
+  <p>
+    <strong>Faculty of Study:</strong>
+    <%= @user.faculty %>
+  </p>
+
+
+  <% if is_admin? %>
+  <%= link_to 'Edit', '/admin/users/' + @user.id.to_s + '/edit' %> | <%= link_to 'Back', '/admin/users' %>
+
+  <% elsif is_logged_in? %>
+    <a href="/">Visit Home Page</a>
+
+  <% end %>
+
 </div>
