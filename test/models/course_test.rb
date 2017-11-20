@@ -15,7 +15,7 @@ class CourseTest < ActiveSupport::TestCase
     assert !@course.save
   end
 
-  test "should save with all valid field" do
+  test "should save with valid field" do
     @course = Course.new
     @course.name = "CMPT 276"
     assert @course.save
