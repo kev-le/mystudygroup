@@ -1,0 +1,44 @@
+<div class="small-panel">
+<% if (!@empty) %>
+  <form action="/addagroup/create" method="post">
+
+    <h1 class="small-panel-title">Create a Group</h1>
+    <% if @group.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@group.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
+
+        <ul>
+        <% @group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <label> Course Name: </label>
+    <br>
+
+    <select name="group[course_id]">
+      <% @courses.each do |course| %>
+          <option value="<%= course.id %>"><%= course.name %></option>
+      <% end %>
+    </select>
+    <br>
+
+    <label> Group Name: </label> <br>
+    <input type="text" name="group[name]"></input>
+    <br>
+
+    <label> Group Description: </label> <br>
+    <textarea class="form-control" rows="3" name="group[description]"></textarea>
+    <br>
+    
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    <button class="btn btn-success" type="submit"> Submit </button>
+<% else %>
+  <%= @empty %>
+  </br>
+  <p> You can add a course <a href="/add_courses">Here.</a>
+<% end %>
+</div>
