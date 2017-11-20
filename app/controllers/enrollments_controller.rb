@@ -1,6 +1,21 @@
 class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
 
+  # POST /enrollments/add
+  def add
+    params[:course_id].each do |id|
+      # Find if they are enrolled in that course already
+      found = Enrollment.find_by("course_id" => id, "user_id" => session[:user_id])
+
+      # if not found then save the new enrollment
+      if (!found)
+        @enrollment = Enrollment.new("course_id" => id, "user_id" => session[:user_id])
+        @enrollment.save
+      end
+    end
+    redirect_to '/courses'
+  end
+
   # GET /enrollments
   # GET /enrollments.json
   def index
@@ -37,10 +52,6 @@ class EnrollmentsController < ApplicationController
     end
   end
 
-  def update_lettergrades
-    @enrollment = Enrollment.find(lettergrade_params[:id])
-    @enrollment.update(lettergrade_params)
-  end
 
   # PATCH/PUT /enrollments/1
   # PATCH/PUT /enrollments/1.json
@@ -66,15 +77,36 @@ class EnrollmentsController < ApplicationController
     end
   end
 
+  # /enrollments/remove/:id
+  def remove
+    @enrollment = Enrollment.find_by("id" => params[:id])
+    course_id = @enrollment.course_id
+    # remove the course enrollment
+    @enrollment.destroy
+
+    # also remove any associated groups
+    @enrollments = Enrollment.where("user_id" => session[:user_id], "course_id" => course_id)
+    @enrollments.each do |enrollment|
+      if !enrollment.group_id.blank?
+        # remove the group enrollments
+        enrollment.destroy
+      end
+    end
+    redirect_to '/courses'
+  end
+
+  # /enrollments/group/remove/:id
+  def group_remove
+    @enrollment = Enrollment.find_by("group_id" => params[:id], "user_id" => session[:user_id])
+    if @enrollment.destroy
+      redirect_to '/groups'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_enrollment
       @enrollment = Enrollment.find(params[:id])
-    end
-
-
-    def lettergrade_params
-      params.require(:enrollment).permit(:id, :percentage, :lettergrade)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

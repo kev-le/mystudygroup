@@ -14,10 +14,72 @@
  *= require sessions
  *= require users
  *= require admin
+ *= require group
  */
 @import "bootstrap";
 
 /* change the navbar color */
 .navbar-light {
   background-color: white !important;
+}
+
+.small-panel {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 3px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  margin-top: 50px !important;
+  margin: auto;
+  width: 300px;
+  max-width: 600px;
+  padding: 10px;
+}
+
+.small-panel-title {
+    text-align: center !important;
+}
+
+.small-panel-body {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.small-btn {
+  width: 100%;
+}
+
+.large-panel {
+  position: relative !important;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 3px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  margin-top: 50px !important;
+  margin: auto;
+  width: 80%;
+  height: 80%;
+  max-width: 1000px;
+  padding: 10px !important;
+}
+
+.large-panel-small {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 3px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  margin-top: 50px !important;
+  margin: auto;
+  width: 300px;
+  max-width: 600px;
+  padding: 10px;
+}
+
+.large-panel-title {
+  text-align: center !important;
+}
+
+.large-panel-body {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.large-btn {
+  width: 100%;
 }

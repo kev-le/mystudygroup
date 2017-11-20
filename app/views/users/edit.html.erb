@@ -11,7 +11,9 @@
     <div class="user-panel-small panel-default">
       <h1>Your Profile</h1>
 
-      <%= render 'updateProfile' %>
+
+      <%= render 'updateProfile', user_id: @user_id %>
+
 
       <a href="javascript:history.back()">Go Back</a>
 

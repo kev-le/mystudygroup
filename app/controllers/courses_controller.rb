@@ -1,85 +1,92 @@
-class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+class UsersController < ApplicationController
 
-  # GET /admin/courses
-  # GET /admin/courses.json
+  # GET /admin/users
+  # GET /admin.json
   def index
-    @courses = Course.all
+    @users = User.all
   end
 
-  # GET /admin/courses/1
-  # GET /admin/courses/1.json
+  # GET /admin/users/1
+  # GET /admin/users/1.json
   def show
-    @course = Course.find(params[:id])
-    @enrollments = Enrollment.where("course_id" => params[:id])
+    @user = User.find(params[:id])
   end
 
-  # GET /admin/courses/details/1
-  def details
-    @course = Course.find(params[:id])
-  end
-
-  # GET /admin/courses/new
-  def new
-    @course = Course.new
-  end
-
-  # GET /admin/courses/1/edit
+  # GET /admin/users/1/edit
   def edit
+    @user = User.find(params[:id])
   end
 
-  # POST /admin/courses
-  # POST /admin/courses.json
-  def create
-    @course = Course.new(course_params)
-
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to action: "details", id: @course.id, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
-      else
-        format.html { render :new }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /admin/courses/1
-  # PATCH/PUT /admin/courses/1.json
+  # PATCH/PUT /admin/users/1
+  # PATCH/PUT /admin/users/1.json
   def update
     respond_to do |format|
-      if @course.update(course_params)
-        format.html { redirect_to action: "details", id: @course.id, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /admin/courses/1
-  # DELETE /admin/courses/1.json
+  def changeProfile
+      @user_id = params[:id]
+      @user = User.find(@user_id)
+      @user.first_name = params[:first_name]
+      @user.last_name = params[:last_name]
+      @user.email = params[:email]
+      @user.bio = params[:bio]
+      @user.school = params[:school]
+      @user.faculty = params[:faculty]
+
+      if @user.save
+          flash[:success] = "Profile updated!"
+      else
+          flash[:error] = "Error"
+      end
+      redirect_to action: "show", user_id: @user_id
+  end
+
+  # DELETE /admin/users/1
+  # DELETE /admin/users/1.json
   def destroy
+    @user = User.find(params[:id])
 
-    # DELETE ALL ENROLLMENTS AS WELL
-    Enrollment.where("course_id" => @course.id).destroy_all
+    # DELETE ALL ENROLLMENTS ASSOCIATED AS WELL
+    Enrollment.where("user_id" => @user.id).destroy_all
 
-    @course.destroy
+    @user.destroy
     respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
+  def new
+    @user = User.new
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def course_params
-      params.require(:course).permit(:course_id, :name, :description)
+  def create
+    @user = User.new(allowed_params)
+    if @user.save
+      # Automatically sign in user
+      session[:user_id] = @user.id
+      session[:email] = @user.email
+      session[:first_name] = @user.first_name
+      session[:last_name] = @user.last_name
+      session[:role] = @user.role
+      redirect_to root_url_path, notice: 'Successfully signed up!'
+    else
+      render :new
     end
+  end
+
+  private
+
+  def allowed_params
+    params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation, :role)
+  end
+
 end
