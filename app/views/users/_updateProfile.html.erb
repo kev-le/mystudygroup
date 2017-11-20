@@ -1,0 +1,47 @@
+<%= form_tag(changeProfile_user_path, method: "post") do %>
+<%= hidden_field_tag :user_id, @user_id %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label_tag :first_name, "First Name" %><br>
+    <%= text_field_tag :first_name, @user.first_name, required: true %>
+    <br><br>
+  </div>
+  <div class="field">
+    <%= label_tag :last_name, "Last Name" %><br>
+    <%= text_field_tag :last_name, @user.last_name, required: true %>
+    <br><br>
+  </div>
+  <div class="field">
+    <%= label_tag :email, "Email" %><br>
+    <%= text_field_tag :email, @user.email, required: true %>
+    <br><br>
+  </div>
+  <div class="field">
+    <%= label_tag :bio, "Bio" %><br>
+    <%= text_field_tag :bio, @user.bio, required: false %>
+  <br><br>
+  </div>
+  <div class="field">
+    <%= label_tag :school, "School" %><br>
+    <%= text_field_tag :school, @user.school, required: false %>
+  <br><br>
+  </div>  <div class="field">
+      <%= label_tag :faculty, "Faculty of Study" %><br>
+      <%= text_field_tag :faculty, @user.faculty, required: false %>
+    <br><br>
+    </div>
+
+  <%= submit_tag "submit", class: 'btn btn-success' %>
+<% end %>
