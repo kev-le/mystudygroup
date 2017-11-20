@@ -20,10 +20,20 @@ class UserTest < ActiveSupport::TestCase
     assert @user.save
   end
 
-  test "should not save user with name length < 2" do
+  test "should not save user with first name length < 2" do
     @user = User.new
     @user.first_name = "b"
     @user.last_name = "chan"
+    @user.email = "bobby@sfu.ca"
+    @user.password = "123456"
+    @user.password_confirmation = "123456"
+    assert !@user.save
+  end
+
+  test "should not save user with last name length < 2" do
+    @user = User.new
+    @user.first_name = "bobby"
+    @user.last_name = "c"
     @user.email = "bobby@sfu.ca"
     @user.password = "123456"
     @user.password_confirmation = "123456"
