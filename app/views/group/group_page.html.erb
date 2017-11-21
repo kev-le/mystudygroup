@@ -1,0 +1,22 @@
+
+<div class="large-panel panel-default">
+
+  <div class="group-container">
+    <div class="row">
+      <img class="col-2 group-image" src="https://i.vimeocdn.com/portrait/9767992_640x640">
+      <div class="col-6">
+        <h2><%= @group.name %> <br> </h2>
+        <p><%= @group.description %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <h6> Members: </h6>
+        <% @members.each do |member| %>
+          <p><%= member.first_name %></p>
+        <% end %>
+      </div>
+      <h2 class="col-6"> Other content to be displayed. </h2>
+    </div>
+  </div>
+</div>

@@ -91,6 +91,17 @@ class GroupController < ApplicationController
     redirect_to '/groups'
   end
 
+  def group_page
+    @group = Group.find_by("id" => params[:id])
+
+    @members = []
+    @enrollments = Enrollment.where("group_id" => @group.id)
+    @enrollments.each do |enrollment|
+      user = User.find_by("id" => enrollment.user_id)
+      @members.push(user)
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group

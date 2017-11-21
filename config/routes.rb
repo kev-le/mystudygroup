@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # Group Routes
   get '/join_group/:course_id/:id', to: 'group#join'
-
+  get '/group_page/:id', to: 'group#group_page'
   get '/findagroup/:id', to: 'group#findagroup'
   get '/addagroup',      to: 'group#addagroup'
   get '/add_courses',    to: 'group#enroll'
