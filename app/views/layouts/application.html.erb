@@ -43,6 +43,15 @@
                 </div>
             </li>
           </li>
+          <% elsif is_logged_in? %>
+          <li class="nav-item btn-group">
+            <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= session[:first_name] %>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <a><%= link_to 'Your Profile', update_user_path(session[:user_id]), class: "dropdown-item" %></a>
+                </div>
+            </li>
+          </li>
         <% end %>
 
       </ul>
