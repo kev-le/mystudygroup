@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /admin/users/1
   # PATCH/PUT /admin/users/1.json
   def update
+    @user = User.find_by("id" => params[:id])
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -32,21 +33,16 @@ class UsersController < ApplicationController
   end
 
   def changeProfile
-      @user_id = params[:id]
-      @user = User.find(@user_id)
-      @user.first_name = params[:first_name]
-      @user.last_name = params[:last_name]
-      @user.email = params[:email]
-      @user.bio = params[:bio]
-      @user.school = params[:school]
-      @user.faculty = params[:faculty]
-
-      if @user.save
-          flash[:success] = "Profile updated!"
+    @user = User.find_by("id" => params[:id])
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
       else
-          flash[:error] = "Error"
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-      redirect_to action: "show", user_id: @user_id
+    end
   end
   # DELETE /admin/users/1
   # DELETE /admin/users/1.json
@@ -85,7 +81,12 @@ class UsersController < ApplicationController
   private
 
   def allowed_params
-    params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation, :role)
+    params.require(:user).permit(:id, :email, :first_name, :last_name, :bio, :school, :faculty, :password, :password_confirmation, :role)
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:user_id, :first_name, :last_name, :email)
   end
 
 end
