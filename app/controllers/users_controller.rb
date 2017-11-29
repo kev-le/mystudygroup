@@ -33,11 +33,11 @@ class UsersController < ApplicationController
   end
 
   def changeProfile
-    @user = User.find_by("id" => params[:id])
+    @user = User.find_by("id" => session[:user_id])
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+      if @user.update(allowed_params)
+        flash.now.alert = 'Successfully updated'
+        format.html { redirect_to update_user_path(session[:user_id]), notice: 'User was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
   private
 
   def allowed_params
-    params.require(:user).permit(:id, :email, :first_name, :last_name, :bio, :school, :faculty, :password, :password_confirmation, :role)
+    params.require(:user).permit(:id, :user_id, :email, :first_name, :last_name, :bio, :school, :faculty, :password, :password_confirmation, :role)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
