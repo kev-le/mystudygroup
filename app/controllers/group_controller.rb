@@ -125,6 +125,6 @@ class GroupController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:id, :course_id, :name, :location_description, :latitude, :longitude, :address)
+      params.require(:group).permit(:id, :course_id, :name, :description, :location_description, :latitude, :longitude, :address)
     end
 end
