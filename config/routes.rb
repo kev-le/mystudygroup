@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  # Index of application
+  get '/', to: 'home#index', as: 'root_url'
+
   # Admin Routes
   resources :users,       path: '/admin/users'
   resources :courses,     path: '/admin/courses'
@@ -14,8 +17,12 @@ Rails.application.routes.draw do
   get '/enrollments/remove/:id', to: 'enrollments#remove'
   get '/enrollments/group/remove/:id', to: 'enrollments#group_remove'
 
+  # Study Spots
+  get '/study_spot', to: 'study_spot#index'
+
   # Group Routes
   get '/join_group/:course_id/:id', to: 'group#join'
+  get '/group_page/:id/change_location', to: 'group#change_location'
   get '/group_page/:id', to: 'group#group_page'
   get '/findagroup/:id', to: 'group#findagroup'
   get '/addagroup',      to: 'group#addagroup'
@@ -25,9 +32,7 @@ Rails.application.routes.draw do
 
   # POST Group
   match '/addagroup/create', to: 'group#create', via: [:post]
-
-  # Index of application
-  get '/', to: 'home#index', as: 'root_url'
+  match '/groups/update_location', to: 'group#update_location', via: [:post]
 
   # User Routes
   resources :users do
