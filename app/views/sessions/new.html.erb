@@ -1,4 +1,5 @@
 <div class="login-panel panel-default">
+
 <%= form_tag sessions_path do %>
 
     <div class="login-panel-heading">
@@ -14,6 +15,9 @@
         <%= password_field_tag :password %>
       </div>
     </div>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key}" %>
+    <% end %>
     <hr>
     <div class="actions">
       <%= submit_tag :"Login", class: 'btn btn-success login-btn' %>
