@@ -1,15 +1,14 @@
-
 <div class="large-panel panel-default">
-
   <div class="searchable-container">
-
     <h1>Add your courses</h1>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key}" %>
+    <% end %>
     <div class="form-group">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <input type="search" class="form-control" id="search" placeholder="Find your course...">
         </div>
     </div>
-
     <form action="/enrollments/add" method="post">
       <div class="row">
       <% @courses.each do |course| %>

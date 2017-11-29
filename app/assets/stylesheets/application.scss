@@ -18,6 +18,10 @@
  */
 @import "bootstrap";
 
+body {
+  margin-bottom: 50px;
+}
+
 /* change the navbar color */
 .navbar-light {
   background-color: white !important;
