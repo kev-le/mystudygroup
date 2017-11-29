@@ -43,12 +43,16 @@ class GroupController < ApplicationController
 
   def findagroup
     @course = Course.find_by("id" => params[:id])
+
     if (!@course)
       @empty = "Course was not found"
     else
       @groups = Group.where('course_id' => @course.id)
       if(@groups.empty?)
         @empty = "No available groups."
+      else
+        # Get user groups and put into array
+        @group_ids = Enrollment.where("user_id" => session[:user_id], "course_id" => @course.id).pluck(:group_id)
       end
     end
   end
