@@ -102,6 +102,21 @@ class GroupController < ApplicationController
     end
   end
 
+  def change_location
+    @group = Group.find_by("id" => params[:id])
+  end
+
+  # POST /groups/update_location
+  def update_location
+    puts group_params
+    @group = Group.find_by("id" => group_params[:id])
+    @group.latitude = group_params[:latitude].to_f
+    @group.longitude = group_params[:longitude].to_f
+    @group.location_description = group_params[:location_description]
+    @group.save
+    redirect_to "/group_page/" + @group.id.to_s
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
@@ -110,6 +125,6 @@ class GroupController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:course_id, :name, :description)
+      params.require(:group).permit(:id, :course_id, :name, :location_description, :latitude, :longitude, :address)
     end
 end

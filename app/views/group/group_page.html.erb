@@ -1,14 +1,27 @@
 
+
+<% if (@group.latitude != nil) %>
+  <% @has_location = true %>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgjFwmbH0yMt79FCYVuRaV4YJ4eUmri60&callback=initMap"
+  type="text/javascript"></script>
+<% else %>
+  <% @has_location = false %>
+<% end %>
+
 <div class="large-panel panel-default">
 
   <div class="group-container">
+
     <div class="row">
-      <img class="col-2 group-image" src="https://i.vimeocdn.com/portrait/9767992_640x640">
-      <div class="col-6">
+      <div class="col-2">
+        <img class="group-image" src="https://i.vimeocdn.com/portrait/9767992_640x640"></img>
+      </div>
+      <div class="col-10">
         <h2><%= @group.name %> <br> </h2>
         <p><%= @group.description %></p>
       </div>
     </div>
+
     <div class="row">
       <div class="col-2">
         <h6> Members: </h6>
@@ -16,7 +29,56 @@
           <p><%= member.first_name %></p>
         <% end %>
       </div>
-      <h2 class="col-6"> Other content to be displayed. </h2>
+      <div class="col-10">
+        <% if @has_location %>
+          <a class="btn btn-primary" href="/group_page/<%= @group.id %>/change_location"> Change Location </a>
+          <p> Location Description: <%= @group.location_description %> </p>
+          <div id="map" style="width:100%; height:400px"></div>
+        <% else %>
+          <p> You can choose a study spot location for this group <a href="/group_page/<%= @group.id %>/change_location"> Here </a> </p>
+        <% end %>
+      </div>
     </div>
+
   </div>
 </div>
+
+<script>
+  function initMap() {
+    var sfu = {lat: 49.2793539, lng: -122.9159272};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 17,
+      center: sfu
+    });
+
+
+    var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading"><%= @group.name %></h1>'+
+        '<div id="bodyContent">'+
+        '<p>Location: <%= @group.location_description %> </p>' +
+        '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYHmw_GH78M_9GALfD0i_fRKLj41i6Nlu8_u1-hx4jCxhHXOfJ" style="width:50px;height:50px;"></img>' +
+        '<button class="primary-set">Join group!</button>'+
+        '</div>'+
+        '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+
+    var marker = new google.maps.Marker({
+      position: { lat: <%= @group.latitude %>, lng: <%= @group.longitude %> },
+      map: map,
+      title: 'mystudygroup'
+    });
+
+    map.panTo(marker.position);
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+
+</script>

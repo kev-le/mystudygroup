@@ -1,0 +1,76 @@
+<script>
+  initMap();
+</script>
+
+<div class="large-panel panel-default">
+  <h1> Choose a location on the map: </h1>
+  <div id="map" style="width:100%; height:400px"></div>
+  <h6> Location Description: </h6>
+  <textarea class="form-control" rows="1" id="location_description"><%=@group.location_description%></textarea>
+  <a class="btn btn-success" onclick="updateLocation()">Assign Location</a>
+</div>
+
+<script>
+
+var gmarkers = [];
+
+function initMap() {
+  <% if @group.latitude %>
+    var location = {lat: <%= @group.latitude %>, lng: <%= @group.longitude %>};
+  <% else %>
+    var location = {lat: 49.2793539, lng: -122.9159272};
+  <% end %>
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 17,
+    center: location
+  });
+
+  <% if @group.latitude %>
+    placeMarkerAndPanTo(location, map);
+  <% end %>
+
+  map.addListener('click', function(e) {
+    removeMarkers();
+    placeMarkerAndPanTo(e.latLng, map);
+  });
+}
+
+function placeMarkerAndPanTo(latLng, map) {
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+  });
+  gmarkers.push(marker);
+  map.panTo(latLng);
+}
+
+function removeMarkers(){
+  for(i=0; i<gmarkers.length; i++){
+    gmarkers[i].setMap(null);
+    gmarkers.splice(i, 1);
+  }
+}
+
+function getLocationDescription() {
+  return document.getElementById('location_description').value;
+}
+
+function updateLocation() {
+  var description = getLocationDescription();
+  $.ajax({
+          type: 'POST',
+          url: '/groups/update_location',
+          data: {
+            group: {
+              id: <%= @group.id %>,
+              latitude: gmarkers[0].position.lat(),
+              longitude: gmarkers[0].position.lng(),
+              location_description: description
+            }
+          },
+          async:false
+        });
+}
+
+</script>
