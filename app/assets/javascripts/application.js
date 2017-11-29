@@ -16,3 +16,10 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+// flash notices go away in 3s
+$('document').ready(function() {
+  setTimeout(function() {
+    $('.flash').slideUp();
+  }, 3000);
+});
