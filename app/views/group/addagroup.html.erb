@@ -1,6 +1,6 @@
 <div class="small-panel">
 <% if (!@empty) %>
-  <form action="/addagroup/create" method="post">
+  <form action="/addagroup/create" method="post" enctype="multipart/form-data">
 
     <h1 class="small-panel-title">Create a Group</h1>
     <% if @group.errors.any? %>
@@ -29,10 +29,14 @@
     <input type="text" name="group[name]"></input>
     <br>
 
+    <label> Group Image: </label> <br>
+    <input type="file" name="group[image]" />
+    <br>
+
     <label> Group Description: </label> <br>
     <textarea class="form-control" rows="3" name="group[description]"></textarea>
     <br>
-    
+
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
     <button class="btn btn-success" type="submit"> Submit </button>

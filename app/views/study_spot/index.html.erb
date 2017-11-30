@@ -1,16 +1,16 @@
 
-<div class="large-panel panel-default">
+<div class="xl-panel panel-default">
   <h1> Study Spots </h1>
 
   <div class="row">
 
-  <div class="col-2">
+  <div class="col-4">
     <div class="sidebar" id="sidebar">
 
     </div>
   </div>
 
-  <div class="col-10">
+  <div class="col-8">
     <div id="map" style="width:100%; height:400px"></div>
   </div>
 </div>
@@ -36,6 +36,10 @@
                         };
 
     <% @groups.each do |group| %>
+      var data = { name: "<%= group.name %>",
+                   course: "<%= group.course.name %>",
+                   description: "<%= group.description %>",
+                   img: "<%= group.image.url(:thumb) %>"};
       var marker = new google.maps.Marker({
         map: map,
         position: { lat: <%= group.latitude %>, lng: <%= group.longitude %> },
@@ -49,7 +53,7 @@
           '<div id="bodyContent">'+
           '<p>Course: <%= group.course.name %> </p>' +
           '<p>Location: <%= group.location_description %> </p>' +
-          '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYHmw_GH78M_9GALfD0i_fRKLj41i6Nlu8_u1-hx4jCxhHXOfJ" style="width:50px;height:50px;"></img>' +
+          '<img src="<%= group.image.url(:medium) %>" style="margin: auto;width:100%;height:100px;"></img> </br>' +
           '<button class="primary-set">Join group!</button>'+
           '</div>'+
           '</div>';
@@ -57,16 +61,22 @@
       marker.addListener('click', assignListener(marker, contentString) );
       gmarkers.push(marker);
 
-      createMarkerButton(marker);
+      createMarkerButton(marker, data);
     <% end %>
   }
 
-  function createMarkerButton(marker) {
+  function createMarkerButton(marker, data) {
     //Creates a sidebar button
     var ul = document.getElementById("sidebar");
     var li = document.createElement("li");
-    var title = marker.getTitle();
-    li.innerHTML = title;
+    li.innerHTML = `<div class="study-spot-card" style="width: 100%">` +
+                   `  <div class="study-spot-thumb"><img src="`+ data['img'] + `"></img></div>` +
+                   `  <div class="study-spot-content">` +
+                   `    <h3>` + data['name'] + `</h3>` +
+                   `    <p>` + data['course'] + `</p>` +
+                   `    <p>` + data['description'] + `</p>` +
+                   `</div>`;
+
     ul.appendChild(li);
 
     //Trigger a click event to marker when the button is clicked.

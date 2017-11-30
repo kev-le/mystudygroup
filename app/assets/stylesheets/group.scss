@@ -30,8 +30,15 @@
 }
 
 .card-text {
+  overflow: auto;
   margin-bottom: 20px !important;
   height: 50px;
+}
+
+.card-img-top {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 10px;
 }
 
 .searchable-container {
