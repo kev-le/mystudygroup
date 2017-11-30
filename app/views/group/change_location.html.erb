@@ -1,12 +1,3 @@
-
-<div class="large-panel panel-default">
-  <h1> Choose a location on the map: </h1>
-  <div id="map" style="width:100%; height:400px"></div>
-  <h6> Location Description: </h6>
-  <textarea class="form-control" rows="1" id="location_description"><%=@group.location_description%></textarea>
-  <a class="btn btn-success" onclick="updateLocation()">Assign Location</a>
-</div>
-
 <script>
 initMap();
 
@@ -72,3 +63,11 @@ function updateLocation() {
 }
 
 </script>
+
+<div class="large-panel panel-default">
+  <h1> Choose a location on the map: </h1>
+  <div id="map" style="width:100%; height:400px"></div>
+  <h6> Location Description: </h6>
+  <textarea class="form-control" rows="1" id="location_description"><%=@group.location_description%></textarea>
+  <a class="btn btn-success" onclick="updateLocation()">Assign Location</a>
+</div>

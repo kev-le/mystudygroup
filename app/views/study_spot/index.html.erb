@@ -1,7 +1,8 @@
 
 <div class="xl-panel panel-default">
-  <%= @group_ids.inspect %>
+
   <h1> Study Spots </h1>
+
   <% if @empty %>
     <%= @empty %>
   <% else %>
@@ -55,9 +56,9 @@
           '</div>'+
           '<h6 id="firstHeading" class="firstHeading"><%= group.name %></h6>'+
           '<div id="bodyContent">'+
-          '<p>Course: <%= group.course.name %> </p>' +
+          '<p style="color: blue">Course: <%= group.course.name %> </p>' +
           '<p>Location: <%= group.location_description %> </p>' +
-          '<img src="<%= group.image.url(:medium) %>" style="margin: auto;width:100%;height:100px;"></img> </br>' +
+          '<img src="<%= group.image.url(:medium) %>" style="height: 75px; width: 75px;"></img> </br>' +
 
           <% if @group_ids.include?(group.id) %>
             `<a href="/group_page/<%= group.id %>" class="btn">Enter!</a>`+
@@ -80,10 +81,10 @@
     var ul = document.getElementById("sidebar");
     var li = document.createElement("li");
     li.innerHTML = `<div class="study-spot-card" style="width: 100%">` +
-                   `  <div class="study-spot-thumb"><img src="`+ data['img'] + `"></img></div>` +
+                   `  <div class="study-spot-thumb"><img src=`+ data['img'] + `></img></div>` +
                    `  <div class="study-spot-content">` +
                    `    <h5>` + data['name'] + `</h5>` +
-                   `    <p>` + data['course'] + `</p>` +
+                   `    <p style="color:blue">` + data['course'] + `</p>` +
                    `    <p>` + data['description'] + `</p>` +
                    `</div>`;
 

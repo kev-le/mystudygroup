@@ -1,49 +1,33 @@
 
 <script>
-  <% if (@group.latitude != nil) %>
-    <% @has_location = true %>
-      initMap();
-  <% else %>
-    <% @has_location = false %>
-  <% end %>
+
+  function start() {
+    <% if (@group.latitude != nil) %>
+      <% @has_location = true %>
+        initMap();
+    <% else %>
+      <% @has_location = false %>
+    <% end %>
+
+  }
 
   function initMap() {
-    var sfu = {lat: 49.2793539, lng: -122.9159272};
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 17,
-      center: sfu
+      center: { lat: <%= 49.000 %>, lng: <%= 142.000 %> }
     });
-
-
-    var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading"><%= @group.name %></h1>'+
-        '<div id="bodyContent">'+
-        '<p>Location: <%= @group.location_description %> </p>' +
-        '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYHmw_GH78M_9GALfD0i_fRKLj41i6Nlu8_u1-hx4jCxhHXOfJ" style="width:50px;height:50px;"></img>' +
-        '<button class="primary-set">Join group!</button>'+
-        '</div>'+
-        '</div>';
-
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-
 
     var marker = new google.maps.Marker({
       position: { lat: <%= @group.latitude %>, lng: <%= @group.longitude %> },
-      map: map,
-      title: 'mystudygroup'
+      map: map
     });
 
-    map.panTo(marker.position);
-
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
+    google.maps.event.addListenerOnce(map, 'idle', function() {
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(new google.maps.LatLng(<%= @group.latitude %>,<%= @group.longitude %>))
     });
+
   }
-
 </script>
 
 <div class="large-panel panel-default">
@@ -68,13 +52,30 @@
         <% end %>
       </div>
       <div class="col-10">
-        <% if @has_location %>
-          <a class="btn btn-primary" href="/group_page/<%= @group.id %>/change_location"> Change Location </a>
-          <p> Location Description: <%= @group.location_description %> </p>
-          <div id="map" style="width:100%; height:400px"></div>
-        <% else %>
-          <p> You can choose a study spot location for this group <a href="/group_page/<%= @group.id %>/change_location"> Here </a> </p>
-        <% end %>
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" href="#chat" role="tab" data-toggle="tab">Group Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#studyspot" role="tab" onclick="start()" data-toggle="tab">Study Spot</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane fade in active" id="chat">...</div>
+
+          <div role="tabpanel" class="tab-pane fade" id="studyspot">
+            <% if @has_location %>
+              <a class="btn btn-primary" href="/group_page/<%= @group.id %>/change_location"> Change Location </a>
+              <p> Location Description: <%= @group.location_description %> </p>
+              <div id="map" style="width:100%; height:400px"></div>
+            <% else %>
+              <p> You can choose a study spot location for this group <a href="/group_page/<%= @group.id %>/change_location"> Here </a> </p>
+            <% end %>
+          </div>
+        </div>
+
       </div>
     </div>
 
