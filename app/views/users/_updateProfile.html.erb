@@ -1,5 +1,8 @@
-<%= form_tag(changeProfile_user_path, method: "post") do %>
 
+<%= form_tag(update_user_profile_path, method: "post") do %>
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "flash #{key}" %>
+  <% end %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>

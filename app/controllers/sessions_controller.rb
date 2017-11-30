@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:first_name] = user.first_name
       session[:last_name] = user.last_name
       session[:role] = user.role
-      redirect_to root_url_path, notice: 'Logged in!'
+      redirect_to root_url_path
     else
       flash.now.alert = 'Email or password is invalid'
       render :new

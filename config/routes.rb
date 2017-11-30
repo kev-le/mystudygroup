@@ -35,12 +35,8 @@ Rails.application.routes.draw do
   match '/groups/update_location', to: 'group#update_location', via: [:post]
 
   # User Routes
-  resources :users do
-      member do
-          post 'changeProfile'
-      end
-  end
-  get 'usrs/:id/edit', to: 'users#edit', as: 'update_user'
+  match 'profile/edit', to: 'users#changeProfile', via: [:post], as: 'update_user_profile'
+  get 'profile/edit/:id', to: 'users#edit', as: 'update_user'
   patch 'users/:id', to: 'users#update'
   get 'register' => 'users#new', :as => 'register'
 

@@ -3,17 +3,22 @@ class EnrollmentsController < ApplicationController
 
   # POST /enrollments/add
   def add
-    params[:course_id].each do |id|
-      # Find if they are enrolled in that course already
-      found = Enrollment.find_by("course_id" => id, "user_id" => session[:user_id])
 
-      # if not found then save the new enrollment
-      if (!found)
-        @enrollment = Enrollment.new("course_id" => id, "user_id" => session[:user_id])
-        @enrollment.save
+    if(params[:course_id])
+      params[:course_id].each do |id|
+        # Find if they are enrolled in that course already
+        found = Enrollment.find_by("course_id" => id, "user_id" => session[:user_id])
+
+        # if not found then save the new enrollment
+        if (!found)
+          @enrollment = Enrollment.new("course_id" => id, "user_id" => session[:user_id])
+          @enrollment.save
+        end
       end
+      redirect_to '/courses'
+    else
+      redirect_to '/add_courses', :flash => { :now => "You have not selected any courses!" }
     end
-    redirect_to '/courses'
   end
 
   # GET /enrollments

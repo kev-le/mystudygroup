@@ -12,7 +12,7 @@
         <% @groups.each do |group| %>
         <div class="col-sm-4">
           <div class="card">
-            <img class="card-img-top" src="https://i.vimeocdn.com/portrait/9767992_640x640">
+            <img class="card-img-top" src="<%= group.image.url %>">
             <h6 class="card-subtitle mb-2 text-muted"><%= group.course.name %></h6>
             <div class="card-block">
               <h4 class="card-title"><%= group.name %></h4>
