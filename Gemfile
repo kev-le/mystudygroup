@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 # Used for encrypting password
 gem 'bcrypt', '~> 3.1.7'
 
+# Used for image uploads
+gem "paperclip", "~> 5.0.0"
+
 # Use Bootstrap 4
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'jquery-rails'
