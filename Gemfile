@@ -40,6 +40,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem "paperclip", "~> 5.0.0"
 gem 'aws-sdk', '~> 2.3'
 
+# Used for chat room
+gem 'redis', '~> 3.2'
+
 # Use Bootstrap 4
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'jquery-rails'

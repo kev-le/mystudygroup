@@ -88,3 +88,12 @@
   width: 100%;
   min-height: 80px;
 }
+
+// CHAT ROOM
+#messages {
+  max-height: 450px;
+  overflow-y: auto;
+  .avatar {
+    margin: 0.5rem;
+  }
+}

@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require turbolinks
+//= require cable
 //= require_tree .
 
 // flash notices go away in 3s

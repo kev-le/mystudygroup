@@ -97,6 +97,8 @@ class GroupController < ApplicationController
 
   def group_page
     @group = Group.find_by("id" => params[:id])
+    @chat_room = ChatRoom.includes(:messages).find_or_create_by('group_id' => @group.id)
+    @message = Message.new
 
     @members = []
     @enrollments = Enrollment.where("group_id" => @group.id)

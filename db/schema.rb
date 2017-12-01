@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129231037) do
+ActiveRecord::Schema.define(version: 20171201081142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.string "title"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_chat_rooms_on_group_id"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.text "name"
@@ -48,6 +56,16 @@ ActiveRecord::Schema.define(version: 20171129231037) do
     t.datetime "image_updated_at"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id"
+    t.bigint "chat_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "first_name"
@@ -61,4 +79,7 @@ ActiveRecord::Schema.define(version: 20171129231037) do
     t.string "faculty"
   end
 
+  add_foreign_key "chat_rooms", "groups"
+  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "users"
 end
