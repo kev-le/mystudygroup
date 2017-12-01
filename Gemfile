@@ -38,6 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Used for image uploads
 gem "paperclip", "~> 5.0.0"
+gem 'aws-sdk', '~> 2.3'
 
 # Use Bootstrap 4
 gem 'bootstrap', '~> 4.0.0.alpha3'
