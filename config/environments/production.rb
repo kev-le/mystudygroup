@@ -11,6 +11,9 @@ Rails.application.configure do
     }
   }
 
+  config.action_cable.allowed_request_origins = ['https://young-temple-54129.herokuapp.com/']
+  config.action_cable.url = "wss://sitepoint-actioncable.herokuapp.com/cable"
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

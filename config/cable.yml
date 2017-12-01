@@ -1,10 +1,10 @@
+production:
+  adapter: redis
+  url: <%= ENV["REDISCLOUD_URL"] %>
+  channel_prefix: mystudygroup_production
+
 development:
   adapter: async
 
 test:
   adapter: async
-
-production:
-  adapter: redis
-  url: redis://localhost:6379/1
-  channel_prefix: mystudygroup_production
