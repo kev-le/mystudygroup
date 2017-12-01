@@ -1,7 +1,8 @@
 
-
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key} alert alert-info" %>
+<% end %>
 <div style="width: 100%; overflow:hidden;">
-
   <div class="home-panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">mystudygroup</h3>

@@ -34,23 +34,21 @@
           </li>
         <% end %>
         <% if is_admin? %>
-          <li class="nav-item btn-group">
-            <!-- <a class="nav-link" href="/admin">Administration</a> -->
-            <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Administration
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/admin/users">Users</a>
                     <a class="dropdown-item" href="/admin/courses">Courses</a>
                     <a class="dropdown-item" href="/admin/enrollments">Enrollments</a>
                 </div>
-            </li>
           </li>
           <% elsif is_logged_in? %>
-          <li class="nav-item btn-group">
-            <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= session[:first_name] %>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <div class="dropdown-menu" aria-labelledby="profile">
                     <a><%= link_to 'Your Profile', update_user_path(session[:user_id]), class: "dropdown-item" %></a>
                 </div>
             </li>
