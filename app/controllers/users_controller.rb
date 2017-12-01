@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+  skip_before_action :require_login
+
+
   # GET /admin/users
   # GET /admin.json
   def index

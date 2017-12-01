@@ -18,8 +18,12 @@
 //= require_tree .
 
 // flash notices go away in 3s
-$('document').ready(function() {
-  setTimeout(function() {
-    $('.flash').slideUp();
-  }, 3000);
-});
+document.addEventListener("turbolinks:load", function() {
+
+  $('document').ready(function() {
+    setTimeout(function() {
+      $('.flash').slideUp();
+    }, 3000);
+  });
+
+})
