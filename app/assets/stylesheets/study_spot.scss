@@ -2,12 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .sidebar {
   list-style-type: none;
   overflow: scroll;
   height: 400px;
   padding: 10px;
   background-color: #cccccc;
+  .study-spot-card:hover {
+    background-color: #b3b3b3;
+    cursor: pointer;
+  }
   .study-spot-card {
     height: 150px;
     overflow: auto;
