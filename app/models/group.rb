@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
     content_type: { content_type: ["image/jpeg", "image/jpg", "image/png"] }
 
   belongs_to :course
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
+  has_many :documents, dependent: :destroy
   has_one :chat_room
 end
