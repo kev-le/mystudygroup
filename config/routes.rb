@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   # POST Group
   match '/addagroup/create', to: 'group#create', via: [:post]
   match '/groups/update_location', to: 'group#update_location', via: [:post]
+  match '/groups/add_file', to: 'group#add_file', via: [:post]
+
 
   # User Routes
   match 'profile/edit', to: 'users#changeProfile', via: [:post], as: 'update_user_profile'

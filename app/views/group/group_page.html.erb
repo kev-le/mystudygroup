@@ -59,6 +59,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#studyspot" role="tab" onclick="start()" data-toggle="tab">Study Spot</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#documents" role="tab" data-toggle="tab">Documents</a>
+          </li>
         </ul>
 
         <!-- Tab panes -->
@@ -90,6 +93,28 @@
               <p> You can choose a study spot location for this group <a href="/group_page/<%= @group.id %>/change_location"> Here </a> </p>
             <% end %>
           </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="documents">
+            <div class="document-container">
+              <div class="row">
+                <% @group.documents.each do |document| %>
+                  <div class="col-sm-4" style="width: 20rem;">
+                    <a href="<%= document.file.url %>"><img class="file-image" src="/assets/file-image.png"></img></a>
+                    <p> <%= document.file_file_name %> </p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <form action="/groups/add_file" method="post" enctype="multipart/form-data">
+              <input type="text" name="file[group_id]" value="<%= @group.id %>" hidden />
+              <label> Upload a file: </label>
+              <input type="file" name="file[file]" />
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+              <button type="submit" class="btn btn-success">Upload</button>
+            </form>
+          </div>
+
         </div>
 
       </div>

@@ -114,13 +114,21 @@ class GroupController < ApplicationController
 
   # POST /groups/update_location
   def update_location
-    puts group_params
     @group = Group.find_by("id" => group_params[:id])
     @group.latitude = group_params[:latitude].to_f
     @group.longitude = group_params[:longitude].to_f
     @group.location_description = group_params[:location_description]
     @group.save
     redirect_to "/group_page/" + @group.id.to_s
+  end
+
+  # POST /groups/add_file
+  def add_file
+    if file_params
+      @group = Group.find(file_params[:group_id])
+      Document.create(file_params)
+      redirect_to "/group_page/" + @group.id.to_s
+    end
   end
 
   private
@@ -131,6 +139,10 @@ class GroupController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:id, :course_id, :name, :description, :location_description, :latitude, :longitude, :address, :image)
+      params.require(:group).permit(:id, :course_id, :name, :description, :location_description, :latitude, :longitude, :address, :image, :file)
+    end
+
+    def file_params
+      params.require(:file).permit(:group_id, :file)
     end
 end
