@@ -13,7 +13,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     @user.last_name = "chan"
     @user.email = "bobby@sfu.ca"
     assert_difference('User.count') do
-      post "/users", params: { user: { first_name: @user.first_name, last_name: @user.last_name, email:"successfully" } }
+      post "/admin/users", params: { user: { first_name: @user.first_name, last_name: @user.last_name, email:"c@c.com", "password" => "123456", "password_confirmation" => "123456" } }
     end
 
     assert_response :redirect

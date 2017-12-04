@@ -7,8 +7,6 @@
       <tr>
         <th>User Id</th>
         <th>Course Name</th>
-        <th>Percentage</th>
-        <th>Lettergrade</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -23,8 +21,6 @@
               <td><%= enrollment.id %></td>
           <% end %>
 
-          <td><%= enrollment.percentage %></td>
-          <td><%= enrollment.lettergrade %></td>
           <td><%= link_to 'Show', enrollment %></td>
           <td><%= link_to 'Edit', edit_enrollment_path(enrollment) %></td>
           <td><%= link_to 'Destroy', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

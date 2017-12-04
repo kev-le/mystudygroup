@@ -126,7 +126,12 @@ class GroupController < ApplicationController
   def add_file
     if file_params
       @group = Group.find(file_params[:group_id])
-      Document.create(file_params)
+      @document = Document.new(file_params)
+      if @document.save
+       flash[:notice] = "Successfully added document!"
+      else
+       flash[:alert] = "Error uploading document!"
+      end
       redirect_to "/group_page/" + @group.id.to_s
     end
   end
