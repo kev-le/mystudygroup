@@ -8,6 +8,8 @@ one:
   name: "Test Group"
   description: "Test Description"
   course: test_course_one
+  latitude: 49.000000
+  longitude: -122.000000
 # column: value
 #
 two:
