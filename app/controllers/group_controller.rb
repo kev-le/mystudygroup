@@ -3,6 +3,27 @@ class GroupController < ApplicationController
     @courses = Course.all
   end
 
+  # DELETE /groups/:id
+  def destroy
+    @group = Group.find(params[:id])
+
+    # DELETE ChatRoom
+    @chatroom = ChatRoom.find_by(group_id: @group.id)
+    @chatroom.destroy
+
+    # DELETE ALL USER ENROLLMENTS FOR THE GROUP
+    enrollments = Enrollment.where(course_id: @group.course.id, group_id: @group.id)
+    if enrollments
+      enrollments.destroy_all
+    end
+
+    @group.destroy
+    respond_to do |format|
+      format.html { redirect_to "/groups", notice: 'Group was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   def courses
     # get the user enrollments
     enrollments = Enrollment.where("user_id" => session[:user_id])

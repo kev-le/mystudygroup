@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get '/enrollments/remove/:id', to: 'enrollments#remove'
   get '/enrollments/group/remove/:id', to: 'enrollments#group_remove'
 
+  # remove group
+  delete '/group/:id', to: 'group#destroy'
+
   # Study Spots
   get '/study_spot', to: 'study_spot#index'
 
@@ -31,6 +34,7 @@ Rails.application.routes.draw do
   get '/add_courses',    to: 'group#enroll'
   get '/courses',        to: 'group#courses'
   get '/groups',         to: 'group#groups'
+
 
   # POST Group
   match '/addagroup/create', to: 'group#create', via: [:post]
