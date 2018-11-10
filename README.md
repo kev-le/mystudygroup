@@ -2,8 +2,6 @@
 
 MyStudyGroup provides a platform for post-secondary students who are seeking study partners or groups at their school.
 
-Currently, the problem for some students is that sometimes it is hard to find someone to study or discuss the assignments with. People in study rooms tend to wearing their earphones and study alone. By allowing students to find study groups, it will enhance their studying and they will be able to cover more content in depth. It is stressful enough as it is to be stuck on a problem or a theory that you can't wrap your head around. We believe the social aspect of MyStudyGroup can reduce barriers between students, save them trouble from finding classmates around them after lectures, and bring out the full benefits of study groups.
-
 ## Features
 
 MyStudyGroup Features:
@@ -24,6 +22,9 @@ Installation steps:
 4. rails db:seed
 5. rails s
 
+## Problem Statement
+
+The problem for some students is finding someone to study or discuss course work with. Students in study rooms usually wear their earphones and study alone which make it difficult to interact with them. By allowing students to find study groups, it will enhance their studying and they will be able to cover more content in depth. It is stressful enough as it is to be stuck on a problem or a theory that you can't wrap your head around. We believe the social aspect of MyStudyGroup can reduce barriers between students, save them trouble from finding classmates around them after lectures, and bring out the full benefits of study groups.
 
 ## Project Scope
 
