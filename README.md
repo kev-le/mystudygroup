@@ -1,10 +1,20 @@
 # MyStudyGroup
 
-MyStudyGroup provides a platform for students who want to find a study partner or group nearby. The application will provide a user’s own profile and features including: creating groups, finding people with the same course near you, pinning "study spots" for locations to study at, private chatting with group members and document sharing amongst groups.
+MyStudyGroup provides a platform for students who want to find a study partner or group nearby.
 
 The target users are mainly university students (age 18-23) who have the need for seeking for study partners or groups in school.
 
 Currently, the problem for some students is that sometimes it is hard to find someone to study or discuss the assignments with. People in study rooms tend to wearing their earphones and study alone. By allowing students to find study groups, it will enhance their studying and they will be able to cover more content in depth. It is stressful enough as it is to be stuck on a problem or a theory that you can't wrap your head around. We believe the social aspect of MyStudyGroup can reduce barriers between students, save them trouble from finding classmates around them after lectures, and bring out the full benefits of study groups.
+
+## Features
+
+MyStudyGroup Features:
+
+1. Create study groups for a course
+2. Find students with the same course nearby
+3. Pin "study spots" for locations to study at
+4. Private instant messaging with group members
+5. Document sharing with group members
 
 ## Installation Steps
 
