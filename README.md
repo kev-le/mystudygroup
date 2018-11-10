@@ -28,7 +28,7 @@ The problem for some students is finding someone to study or discuss course work
 
 ## Project Scope
 
-The main feature of MyStudyGroup is that it provides a platform for students who are enrolled in the same course to find a study group or partner at a nearby location. It utilizes the Google Maps API as users will be able to pin a location on the map to form a “study spot” for a particular course. Other users that are enrolled in that course will be able view and join this study spot. When signing up, a user will be able to sign in with their Facebook profiles and that sets up their user profile. MyStudyGroup also provides an instant messaging component where users in the same course can communicate in. These features will allow a user to create a profile, find/create/join a course, message anyone in that course, share documents, and be able to find a study group.
+The main feature of MyStudyGroup is that it provides a platform for students who are enrolled in the same course to find a study group or partner at a nearby location. MyStudyGroup utilizes the Google Maps API which allows users to pin a location on the map to form a “study spot” for a particular course. Other users that are enrolled in that course will be able view and join this study spot. When signing up, a user can sign-in with Facebook profiles which automatically sets up their user profile. MyStudyGroup also provides an instant messaging component where users in the same course can communicate in. These features will allow a user to create a profile, find/create/join a course, message anyone in that course, share documents, and be able to find a study group.
 
 ## User Stories
 
