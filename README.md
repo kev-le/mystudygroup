@@ -32,9 +32,9 @@ The main feature of MyStudyGroup is that it provides a platform for students who
 
 ## User Stories
 
-User story - A new user will be able to login with their facebook  or create a new profile. Then, the user will be prompted with a list of courses that they can join. Once they have picked their courses, they will see nearby students or study spots pertaining to their course list.  Users can contact other students via the application’s messaging app or they can join a study spot.
+User story - A new user can login with their Facebook account or create a new profile. After creating a profile, the user will be prompted with a list of courses that they can join. Once they have picked their courses, they will see nearby students or study spots pertaining to their course list.  Users can contact other students via the application’s messaging app or they can join a study spot.
 
-Admin story - An admin has the ability to view any user’s profile and edit them (including destroy). They can remove a user from a course for any reason.
+Admin story - An admin has the ability to view, edit, or delete any user's profile. They can remove a user from a course for any reason.
 
 ## Competitive Analysis
 There are apps on mobile that are similar to MyStudyGroup. In particular, GroupIt on iOS has features like finding nearby students in a particular course. What our app would allow for is the ability to meet new people with similar goals and have the ability to use our app as a platform to work efficiently amongst them.
